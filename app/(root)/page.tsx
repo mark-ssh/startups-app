@@ -1,7 +1,7 @@
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
-import { client } from "@/sanity/lib/client";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home({
   searchParams,
@@ -9,25 +9,7 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-
-  const posts = await client.fetch(STARTUPS_QUERY);
-
-  console.log(JSON.stringify(posts, null, 2));
-
-  // const posts = [
-  //   {
-  //     _createdAt: new Date(),
-  //     views: 55,
-  //     author: { _id: 1, name: "Adrian" },
-  //     _id: 1,
-  //     descripiton: "This is a description",
-  //     image:
-  //       "https://unsplash.com/photos/a-tall-white-building-with-lots-of-windows-DjXxQhrg29E",
-  //     category: "Robots",
-  //     title: "We Robots",
-  //   },
-  // ];
-
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY });
   return (
     <>
       <section className="pink_container">
@@ -49,7 +31,7 @@ export default async function Home({
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post: StartupCardType, index: number) => (
+            posts.map((post: StartupTypeCard, index: number) => (
               <StartupCard key={post?._id} post={post} />
             ))
           ) : (
@@ -57,6 +39,8 @@ export default async function Home({
           )}
         </ul>
       </section>
+
+      <SanityLive />
     </>
   );
 }
