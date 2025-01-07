@@ -15,15 +15,18 @@ const Navbar = async () => {
     await signIn("github");
   };
   return (
-    <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
+    <header className="px-5 py-3 bg-white shadow-sm font-worksans">
       <nav className="flex justify-between items-center">
         <Link href="/" className="w-fit">
           <Image src="/logo.png" alt="logo" width={144} height={30} />
         </Link>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 font-worksans">
           {session && session?.user ? (
             <>
-              <Link href="/startup/create" className="text-gray-600">
+              <Link
+                href="/startup/create"
+                className="text-gray-600 font-worksans"
+              >
                 <span>Create</span>
               </Link>
               <form action={logout} className="text-red-800">
