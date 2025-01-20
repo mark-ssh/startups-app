@@ -19,8 +19,15 @@ const Navbar = async () => {
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-worksans">
       <nav className="flex justify-between items-center">
-        <Link href="/" className="w-fit">
-          <Image src="/logo.png" alt="logo" width={144} height={30} />
+        <Link href="/" className="w-fit flex items-center gap-2">
+          <Image
+            src="/startup-app-logo.png"
+            className="h-10 w-10 object-contain"
+            alt="logo"
+            width={144}
+            height={25}
+          />
+          <p className="text-lg font-medium">Startups App</p>
         </Link>
         <div className="flex items-center gap-5 font-worksans">
           {session && session?.user ? (
