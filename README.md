@@ -1,4 +1,4 @@
-# Startup App
+# Startups App
 
 This is a Startups Library Web App platform for startup creators to submit and pitch their ideas to entrepreneurs.
 
